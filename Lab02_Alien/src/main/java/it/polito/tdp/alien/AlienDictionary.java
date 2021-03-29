@@ -40,6 +40,25 @@ public class AlienDictionary {
 		return null; //if not found: null
 		
 	}
+
+	public String translateWordWildCard(String alienWord) {
+		alienWord = alienWord.replace("?", ".");
+		int matchCounter=0;
+		StringBuilder sb = new StringBuilder();
+		for(WordEnhanced we : dictionary ) {
+			if(we.compareWild(alienWord)) {
+				matchCounter++;
+				sb.append(we.getTranslation()+"\n");
+				
+						}
+		}
+		
+		if(matchCounter!=0) {
+			return sb.toString();
+		}else {
+			return null;
+		}
+	}
 	
 	
 	

@@ -62,23 +62,29 @@ public class FXMLController {
     	if(st.hasMoreTokens()) {
     		String translation = st.nextToken();
     		
-    		if(!alienWord.matches("[a-zA-Z]*") || !translation.matches("[a-zA-Z]*")) {
-    			this.risultatotxt.setText("Inserire solo caratteri alfabetici");
+    		if(!alienWord.matches("[a-zA-Z?]*") || !translation.matches("[a-zA-Z?]*")) {
+    			this.risultatotxt.setText("Inserire solo caratteri alfabetici o punto interrogativo");
     			return;
     		}
     		ad.addWord(alienWord, translation);
     		risultatotxt.setText("La parola "+alienWord+" è stata aggiunta");
     	} else {
-    		if(!alienWord.matches("[a-zA-Z]*") ) {
-    			this.risultatotxt.setText("Inserire solo caratteri alfabetici");
+    		if(!alienWord.matches("[a-zA-Z?]*") ) {
+    			this.risultatotxt.setText("Inserire solo caratteri alfabetici o punto interrogativo");
     			return;
     		}
-    		String translation = ad.translateWord(alienWord);
+    		String translation;
     		
-    		if(translation!=null) {
-    			this.risultatotxt.setText(translation);
+    		if(alienWord.matches("[a-zA-Z?]*") && !alienWord.matches("[a-zA-Z]*")) {
+    			translation = ad.translateWordWildCard(alienWord);
+    			
     		} else {
-    			this.risultatotxt.setText("La parola non è presente nel dizionario");
+    			translation = ad.translateWord(alienWord);
+    		}
+    		if(translation!=null) {
+    			risultatotxt.setText(translation);
+    		}else {
+    			risultatotxt.setText("La parola cercata non è presente nel dizionario");
     		}
     	}
     	
