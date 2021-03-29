@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class AlienDictionary {
 
-	private ArrayList<Word> dictionary ;
+	private ArrayList<WordEnhanced> dictionary ;
 	
 	public AlienDictionary() {
-		dictionary = new ArrayList<Word>();
+		dictionary = new ArrayList<WordEnhanced>();
 		
 	}
 	
@@ -20,11 +20,12 @@ public class AlienDictionary {
 	
 	
 	public void addWord(String alienWord, String traslation) { //punto 3
-		Word w = new Word(alienWord,traslation);
+		WordEnhanced w = new WordEnhanced(alienWord);
 			if(dictionary.contains(w)) { //if this word already exists, update the translation
 				dictionary.get(dictionary.indexOf(w)).setTranslation(traslation); ; 
 				return;
 			}
+			w.setTranslation(traslation);
 		dictionary.add(w);
 		
 		
@@ -32,7 +33,7 @@ public class AlienDictionary {
 
 	
 	public String translateWord(String alienWord) { //punto 3
-		Word w = new Word(alienWord);
+		WordEnhanced w = new WordEnhanced(alienWord);
 		if(dictionary.contains(w)) {
 			return dictionary.get(dictionary.indexOf(w)).getTranslation();
 		}

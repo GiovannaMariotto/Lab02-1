@@ -1,13 +1,26 @@
 package it.polito.tdp.alien;
 
-public class Word {
+import java.util.ArrayList;
+import java.util.List;
+
+public class WordEnhanced {
 
 	protected String alianWord;  //punto 1
-	private String translation;
+	private List<String> translations;
 	
 
 	public void setTranslation(String translation) {
-		this.translation = translation;
+		if(!translations.contains(translation)) {
+			translations.add(translation);
+		}
+	}
+
+	public String getAlianWord() {
+		return alianWord;
+	}
+
+	public void setAlianWord(String alianWord) {
+		this.alianWord = alianWord;
 	}
 
 	@Override
@@ -26,7 +39,7 @@ public class Word {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Word other = (Word) obj;
+		WordEnhanced other = (WordEnhanced) obj;
 		if (alianWord == null) {
 			if (other.alianWord != null)
 				return false;
@@ -37,18 +50,30 @@ public class Word {
 
 	
 
-	public Word(String alianWord, String translation) {
+	public WordEnhanced(String alianWord, String translation) {
 		this.alianWord = alianWord;
-		this.translation = translation;
+		this.translations = new ArrayList<String>();
+		this.translations.add(translation);
 	}
 	
-	public Word(String alianWord) {
+	
+	
+	public WordEnhanced(String alianWord) {
 		this.alianWord = alianWord;
+		this.translations = new ArrayList<String>();
+		
 		
 	}
 	
 	public String getTranslation() {
-		return this.translation;
+		String s ="";
+		for(String t :translations) {
+			s+= t +"\n";
+			
+			
+		}
+		
+		return s;
 	}
 	
 
