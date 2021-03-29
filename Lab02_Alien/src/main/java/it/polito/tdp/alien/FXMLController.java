@@ -44,12 +44,13 @@ public class FXMLController {
     void doTraslate(ActionEvent event) {
     	risultatotxt.clear();
     	String riga = parolatxt.getText().toLowerCase(); 
-    	if(riga!=null || riga.length()==0) { //non c'è niente in riga
+    	StringTokenizer st = new StringTokenizer(riga," ");
+    	
+    	if(riga==null || riga.length()==0) { //non c'è niente in riga
     		risultatotxt.setText("Inserire una parola o due");
     		return;
     	}
     	
-    	StringTokenizer st = new StringTokenizer(riga," ");
     	
     	if(!st.hasMoreTokens()) {
     		risultatotxt.setText("Inserire una parola o due");
